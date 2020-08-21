@@ -11,3 +11,10 @@ CREATE TABLE `book` (
   UNIQUE KEY `title_UNIQUE` (`title`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1
 
+
+
+CREATE TABLESPACE tbsAminExam
+   DATAFILE 'tbsAminExam.dbf'
+   SIZE 20m;
+   
+   
