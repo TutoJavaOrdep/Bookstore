@@ -9,9 +9,9 @@
 	<center>
 		<h1>Books Management</h1>
         <h2>
-        	<a href="\Bookstore\new">Add New Book</a>
+        	<a href="\AdminExam\new">Add New Book</a>
         	&nbsp;&nbsp;&nbsp;
-        	<a href="\Bookstore\list">List All Books</a>
+        	<a href="\AdminExam\list">List All Books</a>
         	
         </h2>
 	</center>
