@@ -59,6 +59,13 @@ FROM
     dba_users
 WHERE 
     account_status = 'OPEN';
-	
-	
+
+
+
+
+GRANT CREATE SESSION TO AdminExam;
+
+
+
+
 	
