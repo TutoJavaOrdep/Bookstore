@@ -69,3 +69,14 @@ GRANT CREATE SESSION TO AdminExam;
 ALTER USER AdminExam IDENTIFIED BY 12345678 ACCOUNT UNLOCK;
 
 	
+SELECT 
+    username, 
+    default_tablespace, 
+    profile, 
+    authentication_type
+FROM
+    dba_users
+WHERE 
+    account_status = 'OPEN';
+	
+	
