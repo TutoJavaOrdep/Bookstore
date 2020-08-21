@@ -31,7 +31,7 @@ CREATE TABLE book (
 )TABLESPACE tbsAminExam;
 
 
-
+drop table book;
 
 
  CREATE USER AdminExam
@@ -41,6 +41,7 @@ CREATE TABLE book (
     ACCOUNT LOCK;
 
 SELECT 
+    username, 
     username, 
     default_tablespace, 
     profile, 
@@ -78,5 +79,61 @@ FROM
     dba_users
 WHERE 
     account_status = 'OPEN';
+    
+    
+    
+SELECT table_name
+FROM user_tables
+ORDER BY table_name;
+
+
+SELECT table_name
+FROM all_tables
+WHERE  table_name ='BOOK'
+ORDER BY table_name;
+
+
+SELECT *
+FROM all_tables
+WHERE  table_name ='BOOK'
+ORDER BY table_name;
+
+
+SELECT 
+ OWNER,
+ TABLE_NAME,
+ TABLESPACE_NAME,
+ CLUSTER_NAME,
+ STATUS
+ 
+FROM dba_tables
+WHERE  table_name ='BOOK'
+ORDER BY table_name;
+
+SELECT  OWNER,  TABLE_NAME,  TABLESPACE_NAME,  CLUSTER_NAME,  STATUS
+FROM all_tables
+WHERE  table_name ='BOOK'
+ORDER BY table_name;
+
+
+
+
+
+
+GRANT ALL PRIVILEGES TO AdminExam;
+
+
+GRANT
+  CREATE
+  SELECT,
+  INSERT,
+  UPDATE,
+  DELETE
+ON
+  AdminExam.books
+TO
+  AdminExam;
+
+
 	
 	
