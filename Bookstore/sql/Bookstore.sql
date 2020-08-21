@@ -135,5 +135,12 @@ TO
   AdminExam;
 
 
+
+CREATE SEQUENCE id_seq_BOOK
+    INCREMENT BY 1
+    START WITH 1;
+    
+    
+    
 	
 	

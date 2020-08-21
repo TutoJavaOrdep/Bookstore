@@ -68,7 +68,7 @@ public class BookDAO {
 	}
 
 	public boolean insertBook(Book book) throws SQLException {
-		String sql = "INSERT INTO book (title, author, price) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO book (BOOK_ID,title, author, price) VALUES (?, ?, ?, ?)";
 		connect();
 
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
