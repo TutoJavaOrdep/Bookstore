@@ -48,7 +48,7 @@ CREATE TABLE usuarios (
 --Inicio creacion de tablas
 
 --tema
-CREATE TABLE tema (
+CREATE TABLE temas (
  tema_id NUMBER(10,0) NOT NULL,
  tema VARCHAR(50),
  PRIMARY KEY (tema_id)
@@ -80,13 +80,6 @@ CREATE TABLE cuestionario (
 )TABLESPACE tbsAminExam;
 
 
-
-
-
-
-
-
-
 --examen
 CREATE TABLE examen (
  examen_id NUMBER(10,0) NOT NULL, 
@@ -94,8 +87,6 @@ CREATE TABLE examen (
  status NUMBER(10,0),
  PRIMARY KEY (examen_id)
 )TABLESPACE TBSAMINEXAM;
-
-
 
 --rel_examenes_usuario
 CREATE TABLE rel_cues_exam (
@@ -114,14 +105,6 @@ drop table preguntas;
 drop table respuestas;
 drop table cuestionario;
 drop table rel_cues_exam;
-
-
-
-
-
-
-
-
 
 --Fin creacion de tablas
 
