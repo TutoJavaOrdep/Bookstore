@@ -35,29 +35,35 @@ public class CustionarioDAO {
 		return rowInserted;
 	}
 
-	public List<Tema> listAllTema() throws SQLException {
+	public List<Tema> listAllTema()  {
 		List<Tema> listTema = new ArrayList<>();
-		String sql = "SELECT * FROM Tema";
-		Statement statement = Conexion.connect().createStatement();
-		ResultSet resultSet = statement.executeQuery(sql);
+		String sql = "SELECT * FROM temas";
+		Statement statement = null;
+		ResultSet resultSet = null;
 
-		while (resultSet.next()) {
-			int id = resultSet.getInt("tema_id");
-			String temaCol = resultSet.getString("tema");
-			Tema tema = new Tema(id, temaCol);
-			listTema.add(tema);
+		try {
+			statement  = Conexion.connect().createStatement();
+			 resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				int id = resultSet.getInt("tema_id");
+				String temaCol = resultSet.getString("tema");
+				Tema tema = new Tema(id, temaCol);
+				listTema.add(tema);
+			}
+			resultSet.close();
+			statement.close();
+			Conexion.disconnect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		resultSet.close();
-		statement.close();
-		Conexion.disconnect();
 		return listTema;
 	}
 	
 	
 	public List<Pregunta> listAllPreguntas() throws SQLException {
 		List<Pregunta> listTema = new ArrayList<>();
-		String sql = "SELECT * FROM Preguntas";
+		String sql = "SELECT * FROM preguntas";
 		Statement statement = Conexion.connect().createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
 
@@ -76,7 +82,7 @@ public class CustionarioDAO {
 
 	public List<Respuesta> listAllRespuestas() throws SQLException {
 		List<Respuesta> listRespuesta = new ArrayList<>();
-		String sql = "SELECT * FROM Respuestas";
+		String sql = "SELECT * FROM respuestas";
 		Statement statement = Conexion.connect().createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
 

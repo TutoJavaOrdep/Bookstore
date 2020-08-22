@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.codejava.javaee.bookstore.Book;
 import net.codejava.javaee.cuestionario.dao.CustionarioDAO;
+import net.codejava.javaee.cuestionario.model.Tema;
 
 /**
  * ControllerServlet.java This servlet acts as a page controller for the
@@ -77,6 +78,8 @@ public class ControllerCuestionario extends HttpServlet {
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("<<<salida>>ee>>>1>444>");
+		List<Tema> listTema= cuesDAO.listAllTema();
+		request.setAttribute("listTema", listTema);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("cues/CuestForm.jsp");
 		dispatcher.forward(request, response);
 	}
