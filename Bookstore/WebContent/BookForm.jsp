@@ -17,10 +17,10 @@
 	</center>
     <div align="center">
 		<c:if test="${book != null}">
-			<form action="update" method="post">
+			<form action="\AdminExam\update" method="post">
         </c:if>
         <c:if test="${book == null}">
-			<form action="insert" method="post">
+			<form action="\AdminExam\insert" method="post">
         </c:if>
         <table border="1" cellpadding="5">
             <caption>
