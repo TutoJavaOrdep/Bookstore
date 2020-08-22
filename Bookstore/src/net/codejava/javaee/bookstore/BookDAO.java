@@ -68,14 +68,13 @@ public class BookDAO {
 	}
 
 	public boolean insertBook(Book book) throws SQLException {
-		String sql = "INSERT INTO book (BOOK_ID,title, author, price) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO book (BOOK_ID,title, author, price) VALUES (id_seq_BOOK.NEXTVAL, ?, ?, ?)";
 		connect();
 
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setString(1, "id_seq_BOOK.NEXTVAL");
-		statement.setString(2, book.getTitle());
-		statement.setString(3, book.getAuthor());
-		statement.setFloat(4, book.getPrice());
+		statement.setString(1, book.getTitle());
+		statement.setString(2, book.getAuthor());
+		statement.setFloat(3, book.getPrice());
 
 		boolean rowInserted = statement.executeUpdate() > 0;
 		statement.close();
