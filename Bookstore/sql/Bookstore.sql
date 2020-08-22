@@ -57,8 +57,7 @@ CREATE TABLE temas (
 --pregunta
 CREATE TABLE preguntas (
  pregunta_id NUMBER(10,0) NOT NULL,
- preguta VARCHAR(50),
- tema_id NUMBER(10,0) NOT NULL
+ pregunta VARCHAR(50)
 )TABLESPACE tbsAminExam;
 
 --respuesta
@@ -69,7 +68,7 @@ CREATE TABLE respuestas (
 
 
 --cuestionario
-CREATE TABLE cuestionario (
+CREATE TABLE cuestionarios (
  cuestionario_id NUMBER(10,0) NOT NULL,
  tema_id NUMBER(10,0) NOT NULL,
  pregunta_id NUMBER(10,0) NOT NULL,
@@ -232,7 +231,37 @@ CREATE SEQUENCE id_seq_BOOK
     INCREMENT BY 1
     START WITH 1;
     
+
+
+
+insert into temas values (1, 'SAFE');
+
+
     
-    
+insert into preguntas values (1, '¿Como te llamas?');
+insert into preguntas values (2, '¿Como te llamas?');
+insert into preguntas values (3, '¿Como te llamas?');
+insert into preguntas values (4, '¿Como te llamas?');
+
+
+insert into  respuestas  values (1, 'Pedro Crisanto Tiburcio');
+insert into  respuestas  values (2, 'Pedro Crisanto Tiburcio');
+insert into  respuestas  values (3, 'Pedro Crisanto Tiburcio');
+
+
+insert into cuestionarios  values (1,1,1,1,1);
+insert into cuestionarios  values (2,1,1,2,1);
+insert into cuestionarios  values (3,1,1,2,1);
+
+
+
+
+
+select pregunta , tema
+from preguntas a left outer join temas b
+on   a.pregunta_id  = b.tema_id;
+
+
+
 	
 	
