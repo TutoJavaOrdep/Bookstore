@@ -1,13 +1,13 @@
 package net.codejava.javaee.bookstore;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.codejava.javaee.conexion.Conexion;
 
 /**
  * AbstractDAO.java This DAO class provides CRUD database operations for the
@@ -17,68 +17,19 @@ import java.util.List;
  *
  */
 public class BookDAO {
-	private String jdbcURL;
-	private String jdbcUsername;
-	private String jdbcPassword;
-	private Connection jdbcConnection;
-
-	public BookDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
-		this.jdbcURL = jdbcURL;
-		this.jdbcUsername = jdbcUsername;
-		this.jdbcPassword = jdbcPassword;
-	}
-
-	/**
-	 * Mysql
-	 * 
-	 * @throws SQLException
-	 */
-//	protected void connect() throws SQLException {
-//		if (jdbcConnection == null || jdbcConnection.isClosed()) {
-//			try {
-//				Class.forName("com.mysql.jdbc.Driver");
-//			} catch (ClassNotFoundException e) {
-//				throw new SQLException(e);
-//			}
-//			jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-//		}
-//	}
-
-	/**
-	 * Oracle
-	 * 
-	 * @throws SQLException
-	 */
-
-	protected void connect() throws SQLException {
-		if (jdbcConnection == null || jdbcConnection.isClosed()) {
-			try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-			} catch (ClassNotFoundException e) {
-				throw new SQLException(e);
-			}
-			jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-		}
-	}
-
-	protected void disconnect() throws SQLException {
-		if (jdbcConnection != null && !jdbcConnection.isClosed()) {
-			jdbcConnection.close();
-		}
-	}
 
 	public boolean insertBook(Book book) throws SQLException {
 		String sql = "INSERT INTO book (BOOK_ID,title, author, price) VALUES (id_seq_BOOK.NEXTVAL, ?, ?, ?)";
-		connect();
+		;
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+		PreparedStatement statement = Conexion.connect().prepareStatement(sql);
 		statement.setString(1, book.getTitle());
 		statement.setString(2, book.getAuthor());
 		statement.setFloat(3, book.getPrice());
 
 		boolean rowInserted = statement.executeUpdate() > 0;
 		statement.close();
-		disconnect();
+		Conexion.disconnect();
 		return rowInserted;
 	}
 
@@ -87,9 +38,8 @@ public class BookDAO {
 
 		String sql = "SELECT * FROM book";
 
-		connect();
 
-		Statement statement = jdbcConnection.createStatement();
+		Statement statement = Conexion.connect().createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
 
 		while (resultSet.next()) {
@@ -105,7 +55,7 @@ public class BookDAO {
 		resultSet.close();
 		statement.close();
 
-		disconnect();
+		Conexion.disconnect();;
 
 		return listBook;
 	}
@@ -113,23 +63,21 @@ public class BookDAO {
 	public boolean deleteBook(Book book) throws SQLException {
 		String sql = "DELETE FROM book where book_id = ?";
 
-		connect();
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+		PreparedStatement statement = Conexion.connect().prepareStatement(sql);
 		statement.setInt(1, book.getId());
 
 		boolean rowDeleted = statement.executeUpdate() > 0;
 		statement.close();
-		disconnect();
+		Conexion.disconnect();
 		return rowDeleted;
 	}
 
 	public boolean updateBook(Book book) throws SQLException {
 		String sql = "UPDATE book SET title = ?, author = ?, price = ?";
 		sql += " WHERE book_id = ?";
-		connect();
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+		PreparedStatement statement = Conexion.connect().prepareStatement(sql);
 		statement.setString(1, book.getTitle());
 		statement.setString(2, book.getAuthor());
 		statement.setFloat(3, book.getPrice());
@@ -137,7 +85,7 @@ public class BookDAO {
 
 		boolean rowUpdated = statement.executeUpdate() > 0;
 		statement.close();
-		disconnect();
+		Conexion.disconnect();
 		return rowUpdated;
 	}
 
@@ -145,9 +93,8 @@ public class BookDAO {
 		Book book = null;
 		String sql = "SELECT * FROM book WHERE book_id = ?";
 
-		connect();
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+		PreparedStatement statement = Conexion.connect().prepareStatement(sql);
 		statement.setInt(1, id);
 
 		ResultSet resultSet = statement.executeQuery();
@@ -162,6 +109,8 @@ public class BookDAO {
 
 		resultSet.close();
 		statement.close();
+		
+		Conexion.disconnect();
 
 		return book;
 	}

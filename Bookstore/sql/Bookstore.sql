@@ -230,7 +230,15 @@ TO
 CREATE SEQUENCE id_seq_BOOK
     INCREMENT BY 1
     START WITH 1;
-    
+
+
+
+
+CREATE SEQUENCE id_seq_CUESTIONARIOS
+    INCREMENT BY 1
+    START WITH 1;
+	
+	
 
 
 
@@ -257,11 +265,71 @@ insert into cuestionarios  values (3,1,1,2,1);
 
 
 
-select pregunta , tema
-from preguntas a left outer join temas b
-on   a.pregunta_id  = b.tema_id;
+select c.cuestionario_id , t.tema
+from cuestionarios c left outer join temas t
+on   t.tema_id  = c.tema_id;
 
 
 
-	
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+select c.cuestionario_id ,t.tema_id, t.tema
+from cuestionarios  c inner join  temas t
+on t.tema_id  = c.tema_id; 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
