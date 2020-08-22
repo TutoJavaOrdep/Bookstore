@@ -31,6 +31,115 @@ CREATE TABLE book (
 )TABLESPACE tbsAminExam;
 
 
+
+
+--Inicio creacion de tablas
+CREATE TABLE usuarios (
+ BOOK_ID NUMBER(11,0) NOT NULL,
+ TITLE VARCHAR(128) NOT NULL,
+ AUTHOR VARCHAR(45) NOT NULL,
+ PRICE FLOAT NOT NULL,
+ PRIMARY KEY (BOOK_ID),
+ CONSTRAINT  TITLE_UNIQUE UNIQUE (TITLE)
+)TABLESPACE tbsAminExam;
+
+
+
+--Inicio creacion de tablas
+
+--tema
+CREATE TABLE tema (
+ tema_id NUMBER(10,0) NOT NULL,
+ tema VARCHAR(50),
+ PRIMARY KEY (tema_id)
+)TABLESPACE tbsAminExam;
+
+--pregunta
+CREATE TABLE preguntas (
+ pregunta_id NUMBER(10,0) NOT NULL,
+ preguta VARCHAR(50),
+ tema_id NUMBER(10,0) NOT NULL
+)TABLESPACE tbsAminExam;
+
+--respuesta
+CREATE TABLE respuestas (
+ respuesta_id NUMBER(10,0) NOT NULL,
+ respuesta VARCHAR(50)
+)TABLESPACE tbsAminExam;
+
+
+--cuestionario
+CREATE TABLE cuestionario (
+ cuestionario_id NUMBER(10,0) NOT NULL,
+ tema_id NUMBER(10,0) NOT NULL,
+ pregunta_id NUMBER(10,0) NOT NULL,
+ respuesta_id NUMBER(10,0) NOT NULL,
+ status NUMBER(10,0),
+ PRIMARY KEY (cuestionario_id),
+ CONSTRAINT  cues_tema_preg_resp_UNIQUE UNIQUE (tema_id,pregunta_id,respuesta_id) 
+)TABLESPACE tbsAminExam;
+
+
+
+
+
+
+
+
+
+--examen
+CREATE TABLE examen (
+ examen_id NUMBER(10,0) NOT NULL, 
+ usuario_id NUMBER(10,0),
+ status NUMBER(10,0),
+ PRIMARY KEY (examen_id)
+)TABLESPACE TBSAMINEXAM;
+
+
+
+--rel_examenes_usuario
+CREATE TABLE rel_cues_exam (
+ rel_cues_exam_id NUMBER(10,0) NOT NULL, 
+ cuestionario_id NUMBER(10,0) NOT NULL,
+ examen_id NUMBER(10,0) NOT NULL,
+ PRIMARY KEY (rel_cues_exam_id)
+)TABLESPACE TBSAMINEXAM;
+
+
+
+
+--rollback
+drop table tema;
+drop table preguntas;
+drop table respuestas;
+drop table cuestionario;
+drop table rel_cues_exam;
+
+
+
+
+
+
+
+
+
+--Fin creacion de tablas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 drop table book;
 
 
