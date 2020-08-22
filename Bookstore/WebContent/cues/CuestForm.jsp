@@ -6,28 +6,25 @@
 </head>
 <body>
 	<center>
-		<h1>Books Management</h1>
+		<h1>Cuestionario Management</h1>
 		<h2>
 			<a href="\AdminExam\new">Add New Book</a> &nbsp;&nbsp;&nbsp; <a href="\AdminExam\list">List All Books</a>
 
 		</h2>
 	</center>
 
-
-
-
-	TEMA
+	Cuestionario
 	<!-- 	<div align="center"> -->
 
-
-
-	<!-- 		<select name="NACIONALIDAD" id="NACIONALIDAD"> -->
-	<!-- 			<option>Seleccione TEMA</option> -->
-	<%-- 			<c:forEach var="book" items="${listBook}"> --%>
-	<%-- 				<option value="<%=tema.getId()%>"><%=tema.getTema()%></option> --%>
-	<%-- 			</c:forEach> --%>
-	<!-- 		</select> -->
-
+	</br>
+	<select name="NACIONALIDAD" id="NACIONALIDAD">
+		<c:forEach var="tema" items="${listTema}">
+			<%-- 			<option value="<c:out value='${tema.id}'"   >  <c:out value='${tema.tema}'/> </option> --%>
+			<option value="<c:out value='${tema.getId()}'  />">
+				<c:out value='${tema.getTema()}' />
+			</option>
+		</c:forEach>
+	</select>
 
 
 
